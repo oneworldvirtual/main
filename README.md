@@ -248,7 +248,7 @@
     <h2>Fly with the Future of Virtual Alliances</h2>
     <p>One World Virtual unites 2+ airlines and over 25 pilots under a global, futuristic vision.  
     Explore the skies with stunning routes, pro training, and unforgettable events.</p>
-    <a href="#join" class="btn">Join Now</a>
+    <a href="https://discord.gg/Ac3RqgGbzk" class="btn">Join Now</a>
   </section>
 
   <section id="about">
@@ -273,7 +273,7 @@
     <p style="text-align:center; max-width: 800px; margin:auto;">
       Join our vibrant Discord community and begin your virtual aviation journey with One World Virtual.
       <br><br>
-      <a href="https://discord.gg/your-link" class="btn" target="_blank">Join Our Discord</a>
+      <a href="https://discord.gg/Ac3RqgGbzk" class="btn" target="_blank">Join Our Discord</a>
     </p>
   </section>
 
