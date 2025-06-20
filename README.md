@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>One World Virtual</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="https://cdn.discordapp.com/attachments/123456789012345678/123456789012345678/oneworld_icon.png" type="image/png" />
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/1379145598221029408/1385678052951982141/oneworkd.png?ex=6856f0c0&is=68559f40&hm=b326b61677510b35337dc615869b25d4ad596a2d5c71a6ea0fcef9a123c2b60c&" type="image/png" />
   <style>
     /* Global reset */
     * {
@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 5s ease;
+      transition: opacity 20s ease;
     }
 
     .spinner {
@@ -172,7 +172,7 @@
 
     .btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #ff6600;
+      box-shadow: 0 0 20px #2d2a8d;
     }
 
     h3 {
@@ -265,6 +265,7 @@
       <div class="airline"><a href="https://discord.gg/Mr5hFrmCXw">PF Transavia Virtual</a></div>
       <div class="airline"><a href="https://discord.gg/vcfDHnpK22">Iberia VA</a></div>
       <div class="airline"><a href="https://discord.gg/nDPm9QMGcK">Eva Air PF</a></div>
+      <div class="airline"><a href="https://discord.gg/t5twXCkQdx">PF Tarom</a></div>
     </div>
   </section>
 
@@ -288,9 +289,11 @@
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       loader.style.opacity = 0;
-      setTimeout(() => loader.style.display = "none", 500);
+      setTimeout(() => loader.style.display = "none", 2000);
     });
   </script>
 
 </body>
 </html>
+
+
