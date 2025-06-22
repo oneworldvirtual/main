@@ -228,7 +228,7 @@
       </button>
     </div>
   <!-- BOUTON LOGIN animé (Uiverse.io) -->
-<button class="Btn" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1385353384147685567&response_type=code&redirect_uri=https%3A%2F%2Foneworldvirtual.github.io%2Fapi%2Fmain&scope=identify'" id="login-btn">
+<button class="Btn" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1385353384147685567&response_type=code&redirect_uri=https%3A%2F%2Foneworld.github.io%2Fmain%2F&scope=identify'" id="login-btn">
   <div id="login-btn" class="sign">
   <div class="sign">
     <svg viewBox="0 0 512 512">
