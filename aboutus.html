@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" type="image/png" />
+ <style>
+    :root {
+      --bg: #0e0e11;
+      --text: #f5f5f5;
+      --primary: #3b82f6;
+      --card: #1b1c1f;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+    }
+    header {
+      background: #000;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      margin: 1rem auto;
+      max-width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+    header h1 {
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+    }
+    header h1 img {
+      width: 28px;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(59, 130, 246, 0.2);
+    }
+    .card h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+      footer {
+      background: #111;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+    footer h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" alt="logo"> One World Virtual</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="qanda.html">Q&A</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h2>About Us</h2>
+      <p>Founded in 2025, One World Virtual is a premier alliance uniting several virtual airlines under a single banner within the Project Flight universe. Our mission is to create a truly global network of elite pilots and virtual aviation professionals.</p>
+    </div>
+    <div class="card">
+      <h2>Our Mission</h2>
+      <p>We aim to deliver immersive experiences, promote advanced flight training, and provide an inclusive environment for pilots of all skill levels. Through innovative tools, events, and collaboration, we elevate the standards of virtual aviation.</p>
+    </div>
+    <div class="card">
+      <h2>What We Offer</h2>
+      <p>Our members gain access to a wide network of airlines, dedicated support, structured ranking systems, and a rewards program tailored to recognize excellence and growth. We regularly host events, challenges, and partnerships across the community.</p>
+    </div>
+    <div class="card">
+      <h2>Meet the Team</h2>
+      <p>Our leadership includes experienced virtual aviators, trainers, and developers, all driven by passion and commitment to quality. We work closely with Discord communities and tools like PFConnect and PF Wiki to deliver a seamless experience.</p>
+    </div>
+    <div class="card">
+      <h2>Join Us</h2>
+      <p>Interested in being part of our alliance? Whether you're a solo pilot, airline owner, or simply curious, you're welcome to connect with us on Discord and begin your journey in the skies.</p>
+    </div>
+  </div>
+ <footer>
+    <img src="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" alt="logo" width="50" />
+    <p>Forging the future of virtual aviation — one flight at a time.</p>
+    <p>© 2025 One World Virtual. All rights reserved.</p>
+    <p>Powered by Project Flight • Connected by Passion</p>
+  </footer>
+</body>
+
+</html>
