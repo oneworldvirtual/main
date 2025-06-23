@@ -285,9 +285,7 @@
 </footer>
 
 <script>
-  const authUrl = 'https://oauth2.ryanyagouni.repl.co/api/auth'
-  const userUrl = 'https://oauth2.ryanyagouni.repl.co/api/auth';
-
+  const userUrl = 'https://oauth2-beta.vercel.app/api/auth'; // ← ton backend Vercel ici
 
   async function checkUser() {
     try {
@@ -305,7 +303,7 @@
   }
 
   function login() {
-    window.location.href = authUrl;
+    window.location.href = "https://discord.com/oauth2/authorize?client_id=TON_CLIENT_ID&response_type=code&redirect_uri=https%3A%2F%2Foneworldvirtual.github.io%2Fmain%2F&scope=identify";
   }
 
   function logout() {
@@ -315,6 +313,7 @@
 
   checkUser();
 </script>
+
 
 </body>
 </html>
