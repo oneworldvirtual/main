@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q&A</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" type="image/png" />
+  <style>
+    :root {
+      --bg: #0e0e11;
+      --text: #f5f5f5;
+      --primary: #3b82f6;
+      --card: #1b1c1f;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+    }
+    header {
+      background: #000;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      margin: 1rem auto;
+      max-width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+    header h1 {
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+    }
+    header h1 img {
+      width: 28px;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+    .faq {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      animation: fadeIn 1s ease-in;
+    }
+    .faq-item {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+      transition: 0.3s;
+    }
+    .faq-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+    .faq-item h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .faq-item p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    footer {
+      background: #111;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+    footer h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" alt="logo"> One World Virtual</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="partners.html">Partners</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Question and Answers</h2>
+  </section>
+
+  <section class="faq">
+    <div class="faq-item">
+      <h3>🛫 What is One World Virtual?</h3>
+      <p>One World Virtual is a modern, professional virtual alliance within Project Flight that brings together many airlines under one banner. We focus on realism, community, and elite pilot experience.</p>
+    </div>
+    <div class="faq-item">
+      <h3>📋 How do I join One World Virtual?</h3>
+      <p>Simply join our Discord server and follow the application process. You can apply to fly with any of our partner airlines based on your preference and experience level.</p>
+    </div>
+    <div class="faq-item">
+      <h3>👨‍✈️ Do I need to be an experienced pilot?</h3>
+      <p>No! We welcome both beginners and experienced pilots. We provide training resources, mentorship, and guides to help you grow and fly with confidence.</p>
+    </div>
+    <div class="faq-item">
+      <h3>🗺️ What kind of routes and events do you offer?</h3>
+      <p>We host weekly global events, themed fly-ins, long hauls, and challenges. Routes span 150+ destinations across partner airlines, designed for immersion and fun.</p>
+    </div>
+    <div class="faq-item">
+      <h3>🎖️ How does the ranking and reward system work?</h3>
+      <p>You earn XP and ranks as you fly, complete missions, and participate in events. Unlock badges, titles, and elite status through active contribution and performance.</p>
+    </div>
+    <div class="faq-item">
+      <h3>📞 Who can I contact for support?</h3>
+      <p>Our staff team is available 24/7 via Discord. Whether it’s technical support, help with joining, or general questions, we’re here to assist you at any time.</p>
+    </div>
+  </section>
+
+  <footer>
+    <img src="https://cdn.discordapp.com/attachments/1381306987848925395/1386727577837637722/oneworkd.png?ex=685ac232&is=685970b2&hm=02b134abd27d438af2aa13049a81457aac98a29aee4f8bc4ad5e7ee213cfb6dc&" alt="logo" width="50" />
+    <p>Forging the future of virtual aviation — one flight at a time.</p>
+    <p>© 2025 One World Virtual. All rights reserved.</p>
+    <p>Powered by Project Flight • Connected by Passion</p>
+  </footer>
+</body>
+</html>
