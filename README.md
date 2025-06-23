@@ -283,9 +283,8 @@
   &copy; 2025 One World Virtual. Designed for Project Flight.<br>
   Powered by <a href="https://discord.gg/tNURxzY2tP">PFConnect</a> and <a href="https://discord.gg/UP385JuE3u">PF Wiki</a>.
 </footer>
-
 <script>
-  const userUrl = 'https://oauth2-beta.vercel.app/api/auth'; // ← ton backend Vercel ici
+  const userUrl = 'https://oauth2-beta.vercel.app/api/auth';
 
   async function checkUser() {
     try {
@@ -302,10 +301,6 @@
     }
   }
 
-  function login() {
-    window.location.href = "https://discord.com/oauth2/authorize?client_id=TON_CLIENT_ID&response_type=code&redirect_uri=https%3A%2F%2Foneworldvirtual.github.io%2Fmain%2F&scope=identify";
-  }
-
   function logout() {
     document.cookie = 'discord_token=; Max-Age=0; path=/';
     window.location.reload();
@@ -313,6 +308,7 @@
 
   checkUser();
 </script>
+
 
 
 </body>
