@@ -250,22 +250,20 @@
   </footer>
 
   <script>
-    // Replace these values with your own, if they are different for this project.
-    // Your Discord Client ID
+    // Your Discord Client ID from the Discord Developer Portal
     const CLIENT_ID = "1385353384147685567";
-    // The Redirect URI must exactly match what's configured in your Discord OAuth2 settings
-    const REDIRECT_URI = "https://oneworldvirtual.github.io/main/"; // Adapt this to the exact URL of this page if it changes
+    // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
+    const REDIRECT_URI = "https://oneworldvirtual.github.io/main/"; 
 
-    // Discord authorization URL
-    const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=1385353384147685567&response_type=code&redirect_uri=https%3A%2F%2Foneworldvirtual.github.io%2Fmain%2F&scope=identify`;
+    // Discord authorization URL - CRITICAL: Changed response_type to 'token'
+    const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
 
     // Select the div where user actions will be displayed
     const userActionsDiv = document.querySelector(".user-actions");
 
     // Function to display user information and the logout button
     function showUser(user) {
-      // Use the correct avatar format for Discord
-      const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png'; // Default Discord avatar if not present
+      const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png'; 
       userActionsDiv.innerHTML = `
         <div class="user-info">
           <img src="${avatarUrl}" alt="User Avatar">
@@ -274,11 +272,9 @@
         <button id="logout-btn" class="logout-button">Logout</button>
       `;
 
-      // Add logout behavior to the button
       document.getElementById("logout-btn").onclick = () => {
-        localStorage.removeItem("discordUser"); // Remove user data
-        // Redirect to a clean URL to ensure the token is gone and the state resets
-        window.location.href = REDIRECT_URI;
+        localStorage.removeItem("discordUser");
+        window.location.href = REDIRECT_URI; // Reload to reset state and clear URL hash
       };
     }
 
@@ -292,14 +288,13 @@
     // --- Main login state management logic ---
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
-    const token = params.get("access_token");
+    const token = params.get("access_token"); // We are now expecting 'access_token'
 
     const savedUser = JSON.parse(localStorage.getItem("discordUser"));
 
     if (token) {
       // If a token is present in the URL (after a new Discord login)
-      // Clean the URL immediately to avoid token exposure and re-processing
-      window.history.replaceState({}, document.title, REDIRECT_URI);
+      window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
 
       fetch("https://discord.com/api/users/@me", {
         headers: {
@@ -308,38 +303,31 @@
       })
       .then(res => {
         if (!res.ok) {
-          // If response is not OK (e.g., 401 Unauthorized), log out and show login
           console.error("Discord API error:", res.status, res.statusText);
           localStorage.removeItem("discordUser"); // Clear stale user data
           showLoginButton();
-          throw new Error("Failed to fetch user data from Discord"); // Stop promise chain
+          throw new Error("Failed to fetch user data from Discord");
         }
         return res.json();
       })
       .then(user => {
-        if (user.id) { // Check if user data is valid
-          localStorage.setItem("discordUser", JSON.stringify(user)); // Save user
-          showUser(user); // Display user info
+        if (user.id) {
+          localStorage.setItem("discordUser", JSON.stringify(user));
+          showUser(user);
         } else {
-          // If Discord API returns unexpected/invalid user data
           console.error("Invalid Discord user data received:", user);
-          localStorage.removeItem("discordUser"); // Clear potentially bad data
-          showLoginButton(); // Show login button
+          localStorage.removeItem("discordUser");
+          showLoginButton();
         }
       })
       .catch(error => {
         console.error("Error during Discord user fetch or processing:", error);
-        localStorage.removeItem("discordUser"); // Ensure any bad data is cleared
-        showLoginButton(); // Show login button on any fetch error
+        localStorage.removeItem("discordUser");
+        showLoginButton();
       });
     } else if (savedUser) {
-      // If no token in URL, but user data is saved locally
-      // You might want to add a check here to ensure the savedUser data is still valid,
-      // e.g., by trying to re-fetch from Discord with a refresh token (more complex)
-      // or by simply displaying it and relying on the user to re-login if it's stale.
-      showUser(savedUser); // Display saved user info
+      showUser(savedUser);
     } else {
-      // If neither token nor saved user, show the login button
       showLoginButton();
     }
   </script>
