@@ -12,6 +12,7 @@
       --text: #f5f5f5;
       --primary: #3b82f6;
       --card: #1b1c1f;
+      --accent-red: #dc2626; /* Added an accent color for the logout button */
     }
     * {
       margin: 0;
@@ -59,6 +60,58 @@
     nav a:hover {
       color: var(--primary);
     }
+
+    /* Styles for the login/user section */
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .discord-login-btn {
+      background-color: #5865F2; /* Discord Color */
+      color: white;
+      padding: 0.75rem 1.5rem; /* Slightly larger to match your style */
+      border: none;
+      border-radius: 30px; /* Rounded corners for the button */
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block; /* To apply padding correctly */
+    }
+    .discord-login-btn:hover {
+      background-color: #4752C4;
+      transform: translateY(-2px);
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .user-info img {
+      width: 35px; /* Slightly adjusted avatar size */
+      height: 35px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+    }
+    .logout-button {
+      background-color: var(--accent-red);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .logout-button:hover {
+      background-color: #a01c1c; /* A darker shade on hover */
+      transform: translateY(-2px);
+    }
+
     .hero {
       padding: 4rem 2rem 2rem;
       max-width: 900px;
@@ -134,29 +187,31 @@
         <li><a href="qanda.html">Q&A</a></li>
       </ul>
     </nav>
+    <div class="user-actions">
+      </div>
   </header>
+
   <section class="hero">
     <h2>Welcome to <strong>One World Virtual</strong></h2>
-
     <img src="https://cd.pfconnect.online/uploads/77638560790554670000.jpg" alt="One World Virtual Banner" style="width: 50%; border-radius: 50px; margin-top: 1rem; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-<div style="text-align:center; margin-top: 2rem;">
-  <a href="https://discord.gg/Ac3RqgGbzk" target="_blank" style="
-    background: var(--primary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 8px 20px rgba(125, 125, 125, 0.4);
-    transition: 0.3s ease-in-out;
-    display: inline-block;
-  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    Join Now !
-  </a>
-</div>
-
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://discord.gg/Ac3RqgGbzk" target="_blank" style="
+        background: var(--primary);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(125, 125, 125, 0.4);
+        transition: 0.3s ease-in-out;
+        display: inline-block;
+      " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        Join Now !
+      </a>
+    </div>
   </section>
+
   <div class="container">
     <div class="card">
       <h2>About Us</h2>
@@ -179,12 +234,90 @@
       <p>Ready for takeoff? Connect with us on Discord and start your career in the skies. Apply today and see how far your ambition can take you with One World Virtual.</p>
     </div>
   </div>
+
   <footer>
     <img src="https://cd.pfconnect.online/uploads/33583057198464365000.png" alt="logo" style="width: 50px; height: 50px; border-radius: 50%;">  
     <p>Forging the future of virtual aviation — one flight at a time.</p>
     <p>© 2025 One World Virtual. All rights reserved.</p>
     <p>Powered by Project Flight • Connected by Passion</p>
   </footer>
+
+  <script>
+    // Replace these values with your own, if they are different for this project.
+    // Your Discord Client ID
+    const CLIENT_ID = "1385353384147685567";
+    // The Redirect URI must exactly match what's configured in your Discord OAuth2 settings
+    const REDIRECT_URI = "https://oneworldvirtual.github.io/main/"; // Adapt this to the exact URL of this page if it changes
+
+    // Discord authorization URL
+    const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=1385353384147685567&response_type=code&redirect_uri=https%3A%2F%2Foneworldvirtual.github.io%2Fmain%2F&scope=identify`;
+
+    // Select the div where user actions will be displayed
+    const userActionsDiv = document.querySelector(".user-actions");
+
+    // Function to display user information and the logout button
+    function showUser(user) {
+      const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png'; // Default Discord avatar if not present
+      userActionsDiv.innerHTML = `
+        <div class="user-info">
+          <img src="${avatarUrl}" alt="User Avatar">
+          <span>${user.username}#${user.discriminator}</span>
+        </div>
+        <button id="logout-btn" class="logout-button">Logout</button>
+      `;
+
+      // Add logout behavior to the button
+      document.getElementById("logout-btn").onclick = () => {
+        localStorage.removeItem("discordUser"); // Remove user data
+        window.location.href = REDIRECT_URI; // Reload the page to clear the URL and update state
+      };
+    }
+
+    // Function to display the Discord login button
+    function showLoginButton() {
+      userActionsDiv.innerHTML = `
+        <a href="${AUTH_URL}" class="discord-login-btn">Login with Discord</a>
+      `;
+    }
+
+    // --- Main login state management logic ---
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const token = params.get("access_token");
+
+    const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+
+    if (token) {
+      // If a token is present in the URL (after a new Discord login)
+      window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
+
+      fetch("https://discord.com/api/users/@me", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(user => {
+        if (user.id) { // Check if user data is valid
+          localStorage.setItem("discordUser", JSON.stringify(user)); // Save user
+          showUser(user); // Display user info
+        } else {
+          // If Discord API returns an error or invalid data
+          console.error("Failed to retrieve Discord user data:", user);
+          showLoginButton(); // Show login button
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching Discord user:", error);
+        showLoginButton(); // Show login button on network error
+      });
+    } else if (savedUser) {
+      // If no token in URL, but user data is saved locally
+      showUser(savedUser); // Display saved user info
+    } else {
+      // If neither token nor saved user, show the login button
+      showLoginButton();
+    }
+  </script>
 </body>
 </html>
-
