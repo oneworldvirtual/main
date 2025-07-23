@@ -1,335 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One World Virtual</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/oneworkd.png?updatedAt=1751232250570" type="image/png" />
-  <style>
-    :root {
-      --bg: #0e0e11;
-      --text: #f5f5f5;
-      --primary: #3b82f6;
-      --card: #1b1c1f;
-      --accent-red: #dc2626; /* Added an accent color for the logout button */
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 0;
-    }
-    header {
-      background: #000;
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      margin: 1rem auto;
-      max-width: 90%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-    }
-    header h1 {
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.5rem;
-    }
-    header h1 img {
-      width: 28px;
-    }
-    nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: var(--primary);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oneworld Virtual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/oneworkd.png?updatedAt=1751232250570" type="image/png">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+            background-color: #0F172A; /* Slate-900 for a dark theme */
+            color: #E2E8F0; /* Slate-200 for text */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #F8FAFC; /* White for headings */
+        }
+        /* Custom styles for hero section background overlay */
+        .hero-overlay {
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        /* Style for scroll-to-top button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 100; /* High z-index to be on top */
+            background-color: #0A72B5; /* Blue for Oneworld, analogous to red for Iberia */
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #085A90; /* Darker Blue */
+            transform: translateY(-3px);
+        }
+        /* Basic icon styling for SVG consistency */
+        .icon-lg {
+            width: 4rem; /* 64px */
+            height: 4rem; /* 64px */
+        }
+        /* Card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Button hover effect */
+        .btn-primary {
+            background-color: #0A72B5; /* Blue */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #085A90; /* Darker Blue */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* Discord Login Button and User Info Styling */
+        .discord-login-btn {
+            @apply flex items-center justify-center space-x-2 px-6 py-3 rounded-full text-base font-semibold; /* Increased padding and font size */
+            background-color: #5865F2; /* Discord Blue */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+        .discord-login-btn:hover {
+            background-color: #4752C4; /* Darker Discord Blue */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger hover shadow */
+        }
+        .discord-login-btn svg {
+            @apply w-6 h-6; /* Larger icon */
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-text);
+            font-weight: 600;
+        }
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--highlight);
+        }
+        .logout-button {
+            background-color: #0A72B5; /* Blue */
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .logout-button:hover {
+            background-color: #085A90; /* Darker Blue */
+        }
 
-    /* Styles for the login/user section */
-    .user-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      /* Ensure it takes up space and is visible */
-      min-width: 150px; /* Give it some minimum width */
-      justify-content: flex-end; /* Align content to the right within its space */
-    }
-    .discord-login-btn {
-      background-color: #5865F2; /* Discord Color */
-      color: white;
-      padding: 0.75rem 1.5rem; /* Slightly larger to match your style */
-      border: none;
-      border-radius: 30px; /* Rounded corners for the button */
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background 0.2s, transform 0.2s;
-      display: inline-block; /* To apply padding correctly */
-      white-space: nowrap; /* Prevent text wrapping */
-    }
-    .discord-login-btn:hover {
-      background-color: #4752C4;
-      transform: translateY(-2px);
-    }
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 1rem;
-      white-space: nowrap; /* Prevent text wrapping for username */
-    }
-    .user-info img {
-      width: 35px; /* Slightly adjusted avatar size */
-      height: 35px;
-      border-radius: 50%;
-      border: 2px solid var(--primary);
-      flex-shrink: 0; /* Prevent avatar from shrinking */
-    }
-    .logout-button {
-      background-color: var(--accent-red);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.2s, transform 0.2s;
-      white-space: nowrap; /* Prevent text wrapping */
-    }
-    .logout-button:hover {
-      background-color: #a01c1c; /* A darker shade on hover */
-      transform: translateY(-2px);
-    }
+        /* From Uiverse.io by vinodjangid07 */ 
+        .Btn {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background-color: transparent;
+            position: relative;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .svgContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            backdrop-filter: blur(0px);
+            letter-spacing: 0.8px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: 1px solid rgba(156, 156, 156, 0.466);
+        }
+        .BG {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #7289da;
+            z-index: -1;
+            border-radius: 10px;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        .Btn:hover .BG {
+            transform: rotate(35deg);
+            transform-origin: bottom;
+        }
+        .Btn:hover .svgContainer {
+            border: 1px solid rgba(206, 206, 206, 0.466);
+            background-color: rgba(214, 214, 214, 0.466);
+            backdrop-filter: blur(4px);
+        }
+        /* Loader Styles */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0F172A; /* Match your body background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top */
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
 
-    .hero {
-      padding: 4rem 2rem 2rem;
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ccc;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 20px rgba(59, 130, 246, 0.2);
-    }
-    .card h2 {
-      color: var(--primary);
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-    .card p {
-      color: #ccc;
-      font-size: 0.95rem;
-    }
-    footer {
-      background: #111;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: #999;
-      font-size: 0.9rem;
-      border-top: 1px solid #222;
-    }
-    footer h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    footer p {
-      margin-bottom: 0.5rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.loader-spinner {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #0A72B5; /* Oneworld blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: #E2E8F0; /* Slate-200 for text */
+    font-size: 1.25rem; /* 20px */
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hidden state for loader */
+.loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+    </style>
 </head>
-<body>
-  <header>
-    <h1><img src="https://ik.imagekit.io/hswtnwf8i/oneworkd.png?updatedAt=1751232250570" alt="logo"> One World Virtual</h1>
-    <nav>
-      <ul>
-        <li><a href="aboutus.html">About us</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="qanda.html">Q&A</a></li>
-      </ul>
-    </nav>
-    <div class="user-actions">
-      </div>
-  </header>
+<body class="min-h-screen">
+  <div id="loader" class="loader-wrapper">
+    <div class="loader-spinner"></div>
+    <p class="loading-text">Loading...</p>
+</div>
 
-  <section class="hero">
-    <h2>Welcome to <strong>One World Virtual</strong></h2>
-    <img src="https://www.executivetraveller.com/photos/view/size:1200,675/554b28d7bef840bea458134d767f2254-oneworld-sky-flipper.jpg" alt="One World Virtual Banner" style="width: 50%; border-radius: 50px; margin-top: 1rem; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-    <div style="text-align:center; margin-top: 2rem;">
-      <a href="https://discord.gg/Ac3RqgGbzk" target="_blank" style="
-        background: var(--primary);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 30px;
-        font-weight: bold;
-        font-size: 1rem;
-        text-decoration: none;
-        box-shadow: 0 8px 20px rgba(125, 125, 125, 0.4);
-        transition: 0.3s ease-in-out;
-        display: inline-block;
-      " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        Join Now !
-      </a>
-    </div>
-  </section>
+<header class="bg-gray-900 shadow-lg fixed w-full z-10">
+    </header>
 
-  <div class="container">
-    <div class="card">
-      <h2>About Us</h2>
-      <p>Founded in 2025, One World Virtual unites a range of virtual airlines into a unified, forward-thinking community. Our goal is to foster excellence and innovation across the skies of Project Flight.</p>
-    </div>
-    <div class="card">
-      <h2>Our Mission</h2>
-      <p>We deliver top-tier events, simulation realism, and inclusive experiences. With high standards and a collaborative culture, our mission is to empower and connect aviation lovers globally.</p>
-    </div>
-    <div class="card">
-      <h2>What We Offer</h2>
-      <p>Expect dynamic flight challenges, Discord-integrated services, active leaderboards, and structured training programs. One World Virtual is your gateway to virtual pilot excellence.</p>
-    </div>
-    <div class="card">
-      <h2>Meet the Team</h2>
-      <p>Our leadership is composed of passionate developers, instructors, and aviation experts. We're here to guide and support you through every step of your virtual journey.</p>
-    </div>
-    <div class="card">
-      <h2>Join Us</h2>
-      <p>Ready for takeoff? Connect with us on Discord and start your career in the skies. Apply today and see how far your ambition can take you with One World Virtual.</p>
-    </div>
-  </div>
+    <header class="bg-gray-900 shadow-lg fixed w-full z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://ik.imagekit.io/hswtnwf8i/oneworkd.png?updatedAt=1751232250570" alt="Oneworld Virtual Logo" class="h-10 w-auto mr-2">
+                <a href="#" class="text-2xl font-bold text-white rounded-md hover:text-blue-500 transition duration-300">
+                    Oneworld Virtual
+                </a>
+            </div>
 
-  <footer>
-    <img src="https://ik.imagekit.io/hswtnwf8i/oneworkd.png?updatedAt=1751232250570" alt="logo" style="width: 50px; height: 50px; border-radius: 50%;">  
-    <p>Forging the future of virtual aviation — one flight at a time.</p>
-    <p>© 2025 One World Virtual. All rights reserved.</p>
-    <p>Powered by PF Wiki & PFConnect • Connected by Passion</p>
-  </footer>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
+                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 px-3 py-2 rounded-md">About Us</a>
+                <a href="#features" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 px-3 py-2 rounded-md">Why Join?</a>
+                <a href="#roster" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 px-3 py-2 rounded-md">Member Airlines</a>
+                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
+            </div>
 
-  <script>
-    // Your Discord Client ID from the Discord Developer Portal
-    const CLIENT_ID = "1385353384147685567";
-    // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
-    const REDIRECT_URI = "https://oneworldvirtual.github.io/main/"; 
+            <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
+                </div>
 
-    // Discord authorization URL - CRITICAL: Changed response_type to 'token'
-    const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2">
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+        </nav>
 
-    // Select the div where user actions will be displayed
-    const userActionsDiv = document.querySelector(".user-actions");
-
-    // Function to display user information and the logout button
-    function showUser(user) {
-      const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png'; 
-      userActionsDiv.innerHTML = `
-        <div class="user-info">
-          <img src="${avatarUrl}" alt="User Avatar">
-          <span>${user.username}</span>
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
+            <div class="flex flex-col items-center space-y-4">
+                <a href="#home" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">About Us</a>
+                <a href="#features" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Why Join?</a>
+                <a href="#roster" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Member Airlines</a>
+                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-blue-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
+                <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
+                    </div>
+            </div>
         </div>
-        <button id="logout-btn" class="logout-button">Logout</button>
-      `;
+    </header>
 
-      document.getElementById("logout-btn").onclick = () => {
-        localStorage.removeItem("discordUser");
-        window.location.href = REDIRECT_URI; // Reload to reset state and clear URL hash
-      };
-    }
+    <main class="pt-20"> <section id="home" class="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
+            style="background-image: url('https://ik.imagekit.io/hswtnwf8i/Air_Algerie_Banner.png_ex=68816d96&is=68801c16&hm=05b1b7efbe1e052009560e17193a3d5629a8f9cc6cf084658c5dd90e378814a5&?updatedAt=1753266277818');">
+            <div class="absolute inset-0 hero-overlay rounded-md"></div>
+            <div class="relative z-10 text-center p-6 rounded-lg bg-gray-900 bg-opacity-70 mx-4 md:mx-0 max-w-4xl border border-gray-700 shadow-xl">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+                    <span class="text-blue-600">Oneworld Virtual,</span> Travel Bright
+                </h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-300 drop-shadow-md">
+                    A fast-growing and futuristic alliance in Project Flight, uniting elite airlines and passionate pilots under one unified sky.
+                </p>
+            </div>
+        </section>
 
-    // Function to display the Discord login button
-    function showLoginButton() {
-      userActionsDiv.innerHTML = `
-        <a href="${AUTH_URL}" class="discord-login-btn">Login with Discord</a>
-      `;
-    }
+        <section id="about" class="py-16 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">About Oneworld Virtual</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div class="md:w-1/2 text-left">
+                        <p class="text-lg leading-relaxed mb-4 text-gray-300">
+                            Oneworld Virtual is a dynamic and forward-thinking alliance within Project Flight, dedicated to bringing together the finest virtual airlines and their pilots. With over **13 Airline Members** and more than **100+ Pilots**, we offer an unparalleled alliance experience built on collaboration and shared passion for aviation.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-300">
+                            Our alliance provides a vibrant and diverse community, fostering strong connections between virtual aviators and staff. We are committed to offering the best possible environment for our members to thrive, learn, and enjoy the virtual skies together.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img
+                            src="https://www.executivetraveller.com/photos/view/size:1200,675/554b28d7bef840bea458134d767f2254-oneworld-sky-flipper.jpg"
+                            alt="Oneworld Virtual Alliance"
+                            class="rounded-lg shadow-xl w-full h-auto object-cover border border-gray-700"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/2D3748/F8FAFC?text=Image+Not+Found';"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    // --- Main login state management logic ---
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const token = params.get("access_token"); // We are now expecting 'access_token'
+        <section id="features" class="py-16 bg-slate-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-12">Why Join Oneworld Virtual?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Global Network & Diverse Experiences</h3>
+                        <p class="text-gray-300">
+                            Access a vast network of routes and uniquely styled airline experiences from our 13+ member airlines, expanding your virtual world.
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.5.6L4 17"/><path d="m20 6-4.4 4.4a1.9 1.9 0 0 0-1.5.6H9c-.6 0-1.1.2-1.5.6L4 17"/><path d="M18 10h-1.26a2 2 0 1 0 0 4h1.26"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Partner with Elite Airlines</h3>
+                        <p class="text-gray-300">
+                            Collaborate with some of the biggest and most respected virtual airlines in the Project Flight community.
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Engaging Community & Staff</h3>
+                        <p class="text-gray-300">
+                            Benefit from daily active community support, exciting events, comprehensive trainings, and a fun, reactive staff team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+        <section id="roster" class="py-16 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Our Distinguished Member Airlines</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Oneworld Virtual brings together a prestigious group of virtual airlines dedicated to enhancing the Project Flight experience.
+                </p>
+                <div class="flex justify-center">
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-2xl border border-gray-700 text-left">
+                        <ul class="list-disc list-inside text-gray-300 text-lg space-y-2">
+                            <li>Air Algérie | الخطوط الجوية الجزائرية</li>
+                            <li>PF Transavia Virtual</li>
+                            <li>Iberia VA</li>
+                            <li>EVA Air PF</li>
+                            <li>PF Tarom</li>
+                            <li>Norwegian</li>
+                            <li>PF Malaysia Airlines</li>
+                            <li>Royal Air Maroc</li>
+                            <li>China Airlines</li>
+                            <li>Pegasus Airlines Virtual</li>
+                            <li>PF DHL Virtual</li>
+                            <li>Alaska Airlines Virtual</li>
+                        </ul>
+                        <p class="text-gray-400 italic mt-6">
+                            Join us now and be part of a global virtual aviation alliance!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    if (token) {
-      // If a token is present in the URL (after a new Discord login)
-      window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
+        <section id="contact" class="py-16 bg-slate-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Connect With Us</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Have inquiries, suggestions, or ready to join our alliance? We're here to help.
+                </p>
+                <div class="flex justify-center">
+                    <form action="YOUR_FORMCARRY_LINK_HERE" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Your Name"
+                                required
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="your@example.com"
+                                required
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Message
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+                                placeholder="Your message here..."
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <button
+                                type="submit"
+                                class="btn-primary flex items-center"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      fetch("https://discord.com/api/users/@me", {
-        headers: {
-          Authorization: `Bearer ${token}`
+    <button id="scrollToTopBtn" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    </button>
+
+    <footer class="bg-gray-950 text-gray-400 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">© <span id="current-year"></span> Oneworld Virtual. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://discord.gg/Ac3RqgGbzk" class="hover:text-white transition duration-300">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        // Get the current year for the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Function to close mobile menu when a link is clicked
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
         }
-      })
-      .then(res => {
-        if (!res.ok) {
-          console.error("Discord API error:", res.status, res.statusText);
-          localStorage.removeItem("discordUser"); // Clear stale user data
-          showLoginButton();
-          throw new Error("Failed to fetch user data from Discord");
+
+        // Scroll to top button logic
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
         }
-        return res.json();
-      })
-      .then(user => {
-        if (user.id) {
-          localStorage.setItem("discordUser", JSON.stringify(user));
-          showUser(user);
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Discord Login Integration
+        // Your Discord Client ID from the Discord Developer Portal
+        const CLIENT_ID = "1385353384147685567"; // Keep this as it is for now if it's your current Discord app
+        // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
+        const REDIRECT_URI = "https://oneworldvirtual.github.io/main/"; // Dynamically set to current page
+
+        // Discord authorization URL - CRITICAL: Changed response_type to 'token'
+        const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
+
+        // Select all divs where user actions will be displayed
+        const userActionsDivs = document.querySelectorAll(".user-actions");
+
+        // Function to display user information and the logout button
+        function showUser(user) {
+            const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png';
+            userActionsDivs.forEach(div => {
+                div.innerHTML = `
+                    <div class="user-info">
+                        <img src="${avatarUrl}" alt="User Avatar">
+                        <span>${user.username}</span>
+                        <button class="logout-button">Logout</button>
+                    </div>
+                `;
+                const logoutButton = div.querySelector(".logout-button");
+                if (logoutButton) {
+                    logoutButton.onclick = () => {
+                        localStorage.removeItem("discordUser");
+                        window.location.href = REDIRECT_URI; // Reload to reset state and clear URL hash
+                    };
+                }
+            });
+        }
+
+        // Function to display the Discord login button
+        function showLoginButton() {
+            userActionsDivs.forEach(div => {
+                div.innerHTML = `
+                   <a href="${AUTH_URL}" class="Btn">
+                    <span class="svgContainer">
+                        <svg
+                            viewBox="0 0 640 512"
+                            fill="white"
+                            height="1.4em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
+                            ></path>
+                        </svg>
+                    </span>
+                    <span class="BG"></span>
+                </a>
+                `;
+            });
+        }
+
+        // --- Main login state management logic ---
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const token = params.get("access_token"); // We are now expecting 'access_token'
+
+        const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+
+        if (token) {
+            // If a token is present in the URL (after a new Discord login)
+            window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
+
+            fetch("https://discord.com/api/users/@me", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                    console.error("Discord API error:", res.status, res.statusText);
+                    localStorage.removeItem("discordUser"); // Clear stale user data
+                    showLoginButton();
+                    throw new Error("Failed to fetch user data from Discord");
+                }
+                return res.json();
+            })
+            .then(user => {
+                if (user.id) {
+                    localStorage.setItem("discordUser", JSON.stringify(user));
+                    showUser(user);
+                } else {
+                    console.error("Invalid Discord user data received:", user);
+                    localStorage.removeItem("discordUser");
+                    showLoginButton();
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching Discord user:", error);
+                localStorage.removeItem("discordUser");
+                showLoginButton();
+            });
+        } else if (savedUser) {
+            // If user data is saved in localStorage (already logged in)
+            showUser(savedUser);
         } else {
-          console.error("Invalid Discord user data received:", user);
-          localStorage.removeItem("discordUser");
-          showLoginButton();
+            // If no token and no saved user, show login button
+            showLoginButton();
         }
-      })
-      .catch(error => {
-        console.error("Error during Discord user fetch or processing:", error);
-        localStorage.removeItem("discordUser");
-        showLoginButton();
-      });
-    } else if (savedUser) {
-      showUser(savedUser);
-    } else {
-      showLoginButton();
+        // Add this at the very end of your <script> block, just before the closing
+
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.classList.add('hidden');
     }
-  </script>
+});
+    </script>
 </body>
 </html>
