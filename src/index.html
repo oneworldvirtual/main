@@ -79,11 +79,72 @@
   </p>
 </section>
 
-<footer>
-  &copy; 2025 One World Virtual. Designed for Project Flight.<br>
-  Powered by <a href="https://discord.gg/tNURxzY2tP">PFConnect</a> and <a href="https://discord.gg/UP385JuE3u">PF Wiki</a>.
-</footer>
+<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <img src="https://github.com/oneworldvirtual/main/blob/main/public/oneworld.png?raw=true" alt="OneWorld Virtual Logo" class="footer-logo" />
+                <div class="footer-social">
+                    <a href="https://discord.gg/6HPDhJWBKm" aria-label="Discord">
+                        <img src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="Discord" />
+                    </a>
+                    <a href="https://www.youtube.com/@OneWorldVirtual" class="social-icon" aria-label="YouTube">
+                        <img src="https://www.svgrepo.com/show/475700/youtube-color.svg" alt="YouTube" />
+                    </a>
+                </div>
+            </div>
 
-<script src="scripts.js"></script>
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#whyjoin">Why Join?</a></li>
+                    <li><a href="#memberairlines">Member Airlines</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <div class="contact-info">
+                    <a href="https://discord.gg/6HPDhJWBKm">
+                        <div class="contact-item">
+                            <img class="contact-icon" src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="Discord Icon" />
+                            <span>Discord: OneWorld Virtual</span>
+                        </div>
+                    </a>
+                    <span>Support: 24/7 on Discord</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <p>
+                © 2025 PF OneWorld Virtual. This is a virtual community and is not affiliated with oneworld Management Company, Inc. Optimized for Project Flight Connect Integration.
+            </p>
+            Created by <a href="https://github.com/A350Dreams" style="color: light blue;">A350 Dreams</a> , <a href="https://github.com/dev-banane" style="color: light blue;">Banana🍌</a> ,and <a href="https://github.com/Gamer1320" style="color: light blue;">Gamer1320</a> ,
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
